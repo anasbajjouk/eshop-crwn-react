@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth"
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore"
 
@@ -36,6 +37,8 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider)
 
+export const signOutUser = () => signOut(auth)
+
 export const db = getFirestore()
 
 export const createUserDocumentFromAuth = async (
@@ -46,10 +49,6 @@ export const createUserDocumentFromAuth = async (
 
   const userDocRef = doc(db, "users", userAuth.uid)
   const userSnapshot = await getDoc(userDocRef)
-
-  console.log("userDocRef", userDocRef)
-  console.log("userSnapshot", userSnapshot)
-  console.log("userSnapshot.exists()", userSnapshot.exists())
 
   //if user data does not exist
   if (!userSnapshot.exists()) {
