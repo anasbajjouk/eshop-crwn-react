@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom"
+import Checkout from "./components/checkout/checkout.component"
 import Authentication from "./routes/authentication/authentication.component"
 import Home from "./routes/home/home.component"
 import Navigation from "./routes/navigation/navigation.component"
@@ -11,6 +12,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
         <Route path="auth" element={<Authentication />} />
+        <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>
   )
