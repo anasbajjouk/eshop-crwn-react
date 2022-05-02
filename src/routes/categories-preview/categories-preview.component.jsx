@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import CategoryPreview from "../../category-preview/category-preview.component"
+import CategoryPreview from "../../components/category-preview/category-preview.component"
 import { CategoriesContext } from "../../contexts/categories.context"
 import "./categories-preview.styles.scss"
 
