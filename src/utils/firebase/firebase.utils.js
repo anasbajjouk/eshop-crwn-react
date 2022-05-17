@@ -49,7 +49,7 @@ export const signInWithGoogleRedirect = () =>
 
 export const signOutUser = () => signOut(auth)
 
-export const onAuthStateChangeListener = (callback) => {
+export const onAuthStateChangedListener = (callback) => {
   if (callback == null) return
   onAuthStateChanged(auth, callback)
 }
