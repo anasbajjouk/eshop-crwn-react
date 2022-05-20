@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
+import { persistStore, persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage"
 import thunk from "redux-thunk"
 import { rootReducer } from "./root-reducer"
 
@@ -7,22 +9,19 @@ if (process.env.NODE_ENV !== "production" && module.hot) {
   module.hot.accept("./root-reducer", () => store.replaceReducer(rootReducer))
 }
 
+const persistConfig = {
+  key: "root",
+  storage,
+  blacklist: ["user"],
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const loggerMiddleware = process.env.NODE_ENV === "development" && logger
+
 export const store = configureStore({
-  reducer: rootReducer,
-  middleware: [process.env.NODE_ENV === "development" && logger, thunk],
+  reducer: persistedReducer,
+  middleware: [loggerMiddleware, thunk],
 })
 
-//currying
-// const LoggerMiddlware = (store) => (next) => (action) => {
-//   if (!action.type) {
-//     return next()
-//   }
-
-//   console.log("Type: ", action.type)
-//   console.log("Payload: ", action.payload)
-//   console.log("CurrentState: ", store.getState())
-
-//   next(action)
-
-//   console.log("Next State: ", store.getState())
-// }
+export const persistor = persistStore(store)
