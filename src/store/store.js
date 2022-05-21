@@ -21,7 +21,7 @@ const loggerMiddleware = process.env.NODE_ENV === "development" && logger
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [loggerMiddleware, thunk],
+  middleware: [loggerMiddleware, thunk].filter(Boolean),
 })
 
 export const persistor = persistStore(store)
