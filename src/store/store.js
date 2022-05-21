@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "production" && module.hot) {
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
