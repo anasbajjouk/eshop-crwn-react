@@ -3,7 +3,7 @@ import {
   addItemToCart,
   removeItemFromCart,
   clearItemFromCart,
-} from "../../store/cart/cart.action"
+} from "../../store/cart/cart.action.ts"
 import { selectCartItem } from "../../store/cart/cart.selector"
 import {
   Arrow,

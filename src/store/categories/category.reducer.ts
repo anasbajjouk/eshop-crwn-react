@@ -14,10 +14,7 @@ export type CategoriesState = {
 
 export const INITIAL_STATE: CategoriesState = { categories: [], isLoading: false, error: null }
 
-export const categoriesReducer = (
-  state = INITIAL_STATE,
-  action = {} as AnyAction
-): CategoriesState => {
+export const categoriesReducer = (state = INITIAL_STATE, action: AnyAction): CategoriesState => {
   if (fetchCategoriesStart.match(action)) {
     return { ...state, isLoading: true }
   }
