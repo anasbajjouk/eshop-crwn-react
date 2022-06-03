@@ -1,7 +1,10 @@
+import { Middleware } from "@reduxjs/toolkit"
+import { RootState } from "./../store/store"
+
 //currying
-export const LoggerMiddlware = (store) => (next) => (action) => {
+export const LoggerMiddlware: Middleware<{}, RootState> = (store) => (next) => (action) => {
   if (!action.type) {
-    return next()
+    return next(action)
   }
 
   console.log("Type: ", action.type)
