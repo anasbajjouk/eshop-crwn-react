@@ -9,8 +9,12 @@ import {
 } from "../../store/categories/category.selector"
 import { CategoryContainer, CategoryTitle } from "./category.style"
 
+type CategoryRoutePrams = {
+  category: string
+}
+
 const Category = () => {
-  const { category } = useParams()
+  const { category } = useParams<keyof CategoryRoutePrams>() as CategoryRoutePrams
   const categoriesMap = useSelector(selectCategoriesMap)
   const isLoading = useSelector(selectCategoriesIsLoading)
   const [products, setProducts] = useState(categoriesMap[category])
@@ -27,9 +31,7 @@ const Category = () => {
       ) : (
         <CategoryContainer>
           {products &&
-            products?.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            products?.map((product) => <ProductCard key={product.id} product={product} />)}
         </CategoryContainer>
       )}
     </>

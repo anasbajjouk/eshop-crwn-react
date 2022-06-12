@@ -9,13 +9,12 @@ import Navigation from "./routes/navigation/navigation.component"
 import Shop from "./routes/shop/shop.component"
 import { checkUserSession } from "./store/user/user.action"
 
-
 const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(checkUserSession())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
