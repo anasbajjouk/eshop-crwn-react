@@ -5,16 +5,17 @@ import { Elements } from "@stripe/react-stripe-js"
 import { BrowserRouter } from "react-router-dom"
 
 import App from "./App"
-import "./index.scss"
 import { Provider } from "react-redux"
 import { persistor, store } from "./store/store"
 import { PersistGate } from "redux-persist/integration/react"
 import { stripePromise } from "./utils/stripe/stripe.utils"
+import { GlobalStyle } from "./global.styles"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <BrowserRouter>
